@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "任务详情",
+  "backgroundColor": "#ECF0F5",
+  "usingComponents": {
+    "status-badge": "/components/status-badge/index"
+  }
+}

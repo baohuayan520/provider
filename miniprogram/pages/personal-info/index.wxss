@@ -1,0 +1,132 @@
+.page-container {
+  min-height: 100vh;
+  background: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+}
+
+.loading-wrap, .empty-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) 0;
+}
+.info-row + .info-row {
+  border-top: 1rpx solid var(--bg-divider);
+}
+
+.info-row--skills {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12rpx;
+}
+.info-label {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+}
+.info-value {
+  font-size: 26rpx;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.idcard-row {
+  display: flex;
+  gap: var(--spacing-md);
+}
+.idcard-thumb {
+  flex: 1;
+  height: 200rpx;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* 技能标签展示 */
+.skill-tags-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+}
+.skill-tag-item {
+  padding: 6rpx 18rpx;
+  font-size: 22rpx;
+  color: var(--accent);
+  background: var(--accent-light);
+  border-radius: var(--radius-round);
+  font-weight: 500;
+}
+
+/* 技能选择器 */
+.skill-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 8rpx;
+}
+.skill-tag-pick {
+  padding: 10rpx 22rpx;
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  background: var(--bg-page);
+  border-radius: var(--radius-round);
+  border: 2rpx solid var(--bg-divider);
+  transition: all 0.2s;
+}
+.skill-tag-pick--active {
+  color: #FFFFFF;
+  background: var(--accent);
+  border-color: var(--accent);
+  font-weight: 500;
+}
+
+/* 认证列表 */
+.auth-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) 0;
+}
+.auth-item + .auth-item {
+  border-top: 1rpx solid var(--bg-divider);
+}
+
+.auth-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background: var(--bg-divider);
+  flex-shrink: 0;
+}
+.auth-dot.passed { background: var(--success); }
+.auth-dot.warning { background: var(--warning); }
+
+.auth-info {
+  flex: 1;
+}
+.auth-item-title {
+  font-size: 28rpx;
+  color: var(--text-primary);
+}
+.auth-item-sub {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  margin-top: 4rpx;
+}
+
+.auth-badge {
+  font-size: 24rpx;
+  font-weight: 500;
+  flex-shrink: 0;
+}

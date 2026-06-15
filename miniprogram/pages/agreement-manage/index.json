@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "协议管理",
+  "backgroundColor": "#ECF0F5",
+  "usingComponents": {
+    "empty-state": "/components/empty-state/index"
+  }
+}

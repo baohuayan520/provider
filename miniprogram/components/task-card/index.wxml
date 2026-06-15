@@ -1,0 +1,23 @@
+<!-- components/task-card/index.wxml -->
+<view class="task-card" bindtap="onClick">
+  <!-- 左侧黄色装饰条 -->
+  <view class="card-accent-bar"></view>
+  <view class="card-content">
+    <!-- 第一行：任务名称 + 日期 -->
+    <view class="card-row-top">
+      <view class="task-title-wrap">
+        <text class="task-icon">📅</text>
+        <text class="task-title text-ellipsis">{{task.title}}</text>
+      </view>
+      <text class="task-date">{{task.publishTime}}</text>
+    </view>
+    <!-- 企业名称 -->
+    <text class="task-enterprise text-ellipsis">{{task.maskedEnterpriseName}}</text>
+    <!-- 底部：收费模式 + 按钮 -->
+    <view class="card-row-bottom">
+      <text class="task-fee">{{task.payModeText}}</text>
+      <view wx:if="{{task.claimedByUser}}" class="btn-claimed">已领取</view>
+      <view wx:else class="btn-signup">联系报名</view>
+    </view>
+  </view>
+</view>

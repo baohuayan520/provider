@@ -1,0 +1,60 @@
+<!-- 签署协议 — 第3步/共3步 -->
+<view class="page-container">
+  <!-- 步骤条 -->
+  <view class="steps-wrap card">
+    <text class="steps-title text-h3">领取进度</text>
+    <view class="steps">
+      <view class="step-item">
+        <view class="step-circle done">✓</view>
+        <text class="step-label">四要素</text>
+      </view>
+      <view class="step-line done"></view>
+      <view class="step-item">
+        <view class="step-circle done">✓</view>
+        <text class="step-label">活体认证</text>
+      </view>
+      <view class="step-line done"></view>
+      <view class="step-item">
+        <view class="step-circle active">3</view>
+        <text class="step-label active">签署协议</text>
+      </view>
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="scroll-content">
+    <!-- 加载中 -->
+    <view wx:if="{{loading}}" class="loading-wrap">
+      <text class="text-caption">加载协议中...</text>
+    </view>
+
+    <block wx:else>
+      <!-- 协议内容 -->
+      <view class="card">
+        <text class="text-h2">{{agreement.title}} · {{agreement.version}}</text>
+        <view class="divider-thin" style="margin:16rpx 0;"></view>
+        <scroll-view scroll-y class="agreement-content" bindscrolltolower="onScrollEnd">
+          <rich-text nodes="{{agreement.content}}" />
+        </scroll-view>
+      </view>
+
+      <!-- 已读确认 -->
+      <view class="read-confirm" style="padding:0 var(--spacing-lg);margin-bottom:var(--spacing-md);" bindtap="toggleRead">
+        <view class="flex-row" style="gap:12rpx;">
+          <view class="check-circle {{hasRead ? 'checked' : ''}}">{{hasRead ? '✓' : ''}}</view>
+          <text class="text-caption">我已阅读并同意以上协议内容</text>
+        </view>
+        <text wx:if="{{!hasRead}}" class="text-mini text-placeholder" style="margin-left:52rpx;">请点击此处确认已阅读协议全文</text>
+      </view>
+    </block>
+  </scroll-view>
+
+  <!-- 底部提交 -->
+  <view class="bottom-action-bar">
+    <button
+      class="btn-primary btn-block"
+      bindtap="submitAgreement"
+      loading="{{submitting}}"
+      disabled="{{submitting || !hasRead}}"
+    >确认签署并提交</button>
+  </view>
+</view>

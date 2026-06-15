@@ -1,0 +1,51 @@
+<!-- 帮助中心 - 钢琴键FAQ -->
+<view class="page-container">
+  <!-- 顶部分类Tab - 钢琴琴键风格 -->
+  <view class="tab-piano-wrap">
+    <view class="tab-piano">
+      <view
+        wx:for="{{tabs}}"
+        wx:key="key"
+        class="piano-key {{currentTab === item.key ? 'piano-key--active' : ''}}"
+        data-tab="{{item.key}}"
+        bindtap="switchTab"
+      >
+        <text class="piano-key-icon">{{item.icon}}</text>
+        <text class="piano-key-label">{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- FAQ列表 - 钢琴键交替配色卡片 -->
+  <scroll-view scroll-y class="faq-scroll" enhanced show-scrollbar="{{false}}">
+    <view
+      wx:for="{{faqList}}"
+      wx:key="q"
+      class="faq-card {{item.colorIdx === 0 || item.colorIdx === 2 || item.colorIdx === 4 ? 'faq-card--white' : 'faq-card--light'}} {{expandedIndex === index ? 'faq-card--expanded' : ''}}"
+    >
+      <!-- 左侧钢琴键色条 -->
+      <view class="faq-accent-bar-index{{item.colorIdx}}"></view>
+
+      <!-- 问题区（始终可见） -->
+      <view class="faq-question" data-index="{{index}}" bindtap="toggleExpand">
+        <view class="faq-q-content">
+          <text class="faq-q-mark">Q</text>
+          <text class="faq-q-text">{{item.q}}</text>
+        </view>
+        <view class="faq-arrow {{expandedIndex === index ? 'faq-arrow--open' : ''}}">
+          <text class="faq-arrow-icon">›</text>
+        </view>
+      </view>
+
+      <!-- 答案区（展开可见） -->
+      <view class="faq-answer {{expandedIndex === index ? 'faq-answer--show' : ''}}">
+        <view class="faq-a-content">
+          <text class="faq-a-mark">A</text>
+          <text class="faq-a-text">{{item.a}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view style="height:120rpx;"></view>
+  </scroll-view>
+</view>

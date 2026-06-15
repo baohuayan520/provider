@@ -1,0 +1,167 @@
+.page-container {
+  min-height: 100vh;
+  background: var(--bg-page);
+}
+
+/* ========== 顶部黄色背景区 ========== */
+.mine-header {
+  background: linear-gradient(180deg, #FFD93D 0%, #FFEB3B 70%, #F5F5F5 100%);
+  padding: 48rpx 32rpx 60rpx;
+  border-radius: 0 0 40rpx 40rpx;
+}
+
+/* 用户头部 */
+.user-header {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 4rpx solid rgba(255,255,255,0.6);
+  background: #FFFFFF;
+}
+
+.user-info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.user-name {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #333333;
+}
+
+.user-phone {
+  font-size: 26rpx;
+  color: #666666;
+}
+
+/* ========== 收入统计卡 ========== */
+.income-card {
+  margin: -40rpx 32rpx 24rpx;
+  padding: 32rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 1;
+}
+
+.income-label {
+  font-size: 26rpx;
+  color: #666666;
+  margin-bottom: 8rpx;
+}
+
+.income-value {
+  font-size: 56rpx;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 24rpx;
+}
+
+.income-sub-row {
+  display: flex;
+  gap: 16rpx;
+}
+
+.income-sub-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  padding: 20rpx;
+  background: #F8F8F8;
+  border-radius: 16rpx;
+}
+
+.sub-label {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.sub-value {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333333;
+}
+
+/* ========== 功能菜单卡片 ========== */
+.menu-card {
+  margin: 0 32rpx 24rpx;
+  padding: 32rpx 16rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+}
+
+.menu-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.menu-item {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+  padding: 20rpx 8rpx;
+  box-sizing: border-box;
+}
+
+.menu-item:active {
+  opacity: 0.7;
+}
+
+.menu-icon-wrap {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-icon {
+  font-size: 36rpx;
+  line-height: 1;
+}
+
+.menu-title {
+  font-size: 24rpx;
+  color: #666666;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* ========== 安全退出 ========== */
+.logout-area {
+  padding: 40rpx 32rpx;
+}
+
+.logout-btn {
+  width: 100%;
+  height: 96rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #FFD93D 0%, #FFEB3B 100%);
+  border-radius: 48rpx;
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 4rpx 16rpx rgba(255, 217, 61, 0.30);
+}
+
+.logout-btn:active {
+  opacity: 0.9;
+  transform: scale(0.98);
+}

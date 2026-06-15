@@ -1,0 +1,39 @@
+<!-- 帮助文章详情 -->
+<view class="page-container">
+  <view wx:if="{{loading}}" class="loading-wrap">
+    <text class="text-caption">加载中...</text>
+  </view>
+
+  <scroll-view wx:elif="{{article}}" scroll-y class="scroll-content">
+    <view class="card">
+      <text class="text-h1">{{article.title}}</text>
+      <view class="flex-row" style="gap:16rpx;margin-top:16rpx;">
+        <text class="badge badge-info text-caption">
+          {{article.category === 'guide' ? '使用指南' : article.category === 'faq' ? '常见问题' : '政策说明'}}
+        </text>
+        <text class="text-caption text-secondary">{{article.viewCount || 0}} 次阅读</text>
+        <text class="text-caption text-secondary">更新于 {{article.updateTime ? '' : ''}}</text>
+      </view>
+    </view>
+
+    <view class="card">
+      <rich-text nodes="{{article.content}}" class="article-content" />
+    </view>
+
+    <!-- 相关推荐 -->
+    <view wx:if="{{relatedArticles.length > 0}}" class="card">
+      <text class="text-h3" style="margin-bottom:16rpx;display:block;">相关推荐</text>
+      <view
+        wx:for="{{relatedArticles}}"
+        wx:key="_id"
+        class="related-item"
+        data-id="{{item._id}}"
+        bindtap="goDetail"
+      >
+        <text class="text-body text-accent">· {{item.title}}</text>
+      </view>
+    </view>
+
+    <view style="height:60rpx;"></view>
+  </scroll-view>
+</view>

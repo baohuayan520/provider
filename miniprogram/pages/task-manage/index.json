@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "任务管理",
+  "backgroundColor": "#F5F5F5",
+  "usingComponents": {
+    "empty-state": "/components/empty-state/index",
+    "status-badge": "/components/status-badge/index"
+  }
+}

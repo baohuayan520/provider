@@ -1,0 +1,96 @@
+<!-- 税费计算器 -->
+<view class="page-container">
+  <scroll-view scroll-y class="scroll-content">
+    <!-- 输入区 -->
+    <view class="card input-card">
+      <text class="input-prefix">¥</text>
+      <input
+        class="amount-input"
+        type="digit"
+        placeholder="请输入劳务报酬金额"
+        value="{{inputAmount}}"
+        bindinput="onInput"
+        focus
+      />
+    </view>
+
+    <!-- 计算结果 -->
+    <view wx:if="{{result}}" class="result-card card">
+      <text class="text-h2" style="margin-bottom:24rpx;display:block;">计算结果</text>
+      
+      <view class="result-grid">
+        <view class="result-item">
+          <text class="result-label text-caption">税前收入</text>
+          <text class="result-val">¥{{result.gross}}</text>
+        </view>
+        <view class="result-item">
+          <text class="result-label text-caption">应纳税所得额</text>
+          <text class="result-val">¥{{result.taxableAmount}}</text>
+        </view>
+        <view class="result-item">
+          <text class="result-label text-caption">适用税率</text>
+          <text class="result-val text-warning">{{result.taxRate}}%</text>
+        </view>
+        <view class="result-item">
+          <text class="result-label text-caption">速算扣除数</text>
+          <text class="result-val">¥{{result.quickDeduction}}</text>
+        </view>
+      </view>
+
+      <view class="divider-thin" style="margin:24rpx 0;"></view>
+
+      <view class="result-final">
+        <view class="final-row">
+          <text class="text-h3">应纳税额</text>
+          <text class="text-h2 text-warning">¥{{result.taxAmount}}</text>
+        </view>
+        <view class="final-row" style="margin-top:8rpx;">
+          <text class="text-h3">税后收入</text>
+          <text class="text-h2 text-success">¥{{result.netIncome}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 税率规则 -->
+    <view class="card">
+      <view class="flex-between" bindtap="toggleRule">
+        <text class="text-h3">税率规则说明</text>
+        <text class="text-caption">{{showRule ? '收起 ▲' : '展开 ▼'}}</text>
+      </view>
+      <view wx:if="{{showRule}}" class="rule-content">
+        <view class="rule-item">
+          <text class="rule-range">≤ 800元</text>
+          <text class="rule-desc">免税</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-range">800 ~ 4000元</text>
+          <text class="rule-desc">(收入-800) × 20%</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-range">> 4000元 · ≤2万部分</text>
+          <text class="rule-desc">收入×80%×20%</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-range">2万 ~ 5万部分</text>
+          <text class="rule-desc">收入×80%×30% - 2000</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-range">> 5万部分</text>
+          <text class="rule-desc">收入×80%×40% - 7000</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 计算历史 -->
+    <view wx:if="{{history.length > 0}}" class="card">
+      <text class="text-h3" style="margin-bottom:16rpx;display:block;">最近计算</text>
+      <view wx:for="{{history}}" wx:key="time" class="history-item" data-gross="{{item.gross}}" bindtap="fillAmount">
+        <text class="text-caption">¥{{item.gross}}</text>
+        <text class="text-caption text-warning">扣 ¥{{item.taxAmount}}</text>
+        <text class="text-caption text-success">得 ¥{{item.netIncome}}</text>
+      </view>
+    </view>
+
+    <view style="height:60rpx;"></view>
+  </scroll-view>
+</view>

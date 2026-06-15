@@ -1,0 +1,29 @@
+/* components/empty-state/index.wxss */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80rpx 48rpx;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  opacity: 0.3;
+}
+
+.empty-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-top: 24rpx;
+}
+
+.empty-desc {
+  font-size: 26rpx;
+  color: var(--text-placeholder);
+  max-width: 480rpx;
+  text-align: center;
+  margin-top: 12rpx;
+  line-height: 1.5;
+}

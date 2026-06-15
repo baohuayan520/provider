@@ -1,0 +1,261 @@
+/* ========== 页面容器 ========== */
+.page-container {
+  min-height: 100vh;
+  background: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========== Tab钢琴键区域 ========== */
+.tab-piano-wrap {
+  background: var(--bg-card);
+  padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-md);
+  box-shadow: 0 2px 12px rgba(61, 61, 61, 0.04);
+}
+
+.tab-piano {
+  display: flex;
+  gap: 12rpx;
+}
+
+.piano-key {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 120rpx;
+  background: var(--bg-page);
+  border-radius: var(--radius-lg);
+  border: 2rpx solid transparent;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2rpx 0 2rpx rgba(74, 108, 247, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.piano-key::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  width: 60%;
+  height: 6rpx;
+  background: var(--bg-divider);
+  border-radius: 3rpx 3rpx 0 0;
+  transition: all 0.25s;
+}
+
+.piano-key--active {
+  background: linear-gradient(135deg, #4A6CF7 0%, #3B5DE7 100%);
+  border-color: #4A6CF7;
+  box-shadow: 0 8rpx 20rpx rgba(74, 108, 247, 0.3);
+  transform: translateY(-4rpx);
+}
+
+.piano-key--active::after {
+  background: rgba(255, 255, 255, 0.4);
+  width: 40%;
+  left: 30%;
+}
+
+.piano-key-icon {
+  font-size: 32rpx;
+  margin-bottom: 4rpx;
+}
+
+.piano-key-label {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: color 0.25s;
+}
+
+.piano-key--active .piano-key-label {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* ========== FAQ滚动区域 ========== */
+.faq-scroll {
+  flex: 1;
+  padding: var(--spacing-md) var(--spacing-md) 0;
+}
+
+/* ========== FAQ钢琴键卡片 ========== */
+.faq-card {
+  margin-bottom: var(--spacing-md);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(26, 26, 46, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 钢琴键交替背景 */
+.faq-card--white {
+  background: #FFFFFF;
+}
+
+.faq-card--light {
+  background: #F0F4FF;
+}
+
+.faq-card--expanded {
+  box-shadow: 0 4px 20px rgba(74, 108, 247, 0.12);
+  transform: scale(1.01);
+}
+
+/* 左侧钢琴键色条 */
+.faq-accent-bar-index0 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 8rpx;
+  background: linear-gradient(180deg, #4A6CF7 0%, #7C5CFC 100%);
+  border-radius: 4rpx 0 0 4rpx;
+}
+
+.faq-accent-bar-index1 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 8rpx;
+  background: linear-gradient(180deg, #7C5CFC 0%, #4A6CF7 100%);
+  border-radius: 4rpx 0 0 4rpx;
+}
+
+.faq-accent-bar-index2 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 8rpx;
+  background: linear-gradient(180deg, #0BBF69 0%, #4A6CF7 100%);
+  border-radius: 4rpx 0 0 4rpx;
+}
+
+.faq-accent-bar-index3 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 8rpx;
+  background: linear-gradient(180deg, #FF6B6B 0%, #FFA94D 100%);
+  border-radius: 4rpx 0 0 4rpx;
+}
+
+.faq-accent-bar-index4 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 8rpx;
+  background: linear-gradient(180deg, #4A6CF7 0%, #0BBF69 100%);
+  border-radius: 4rpx 0 0 4rpx;
+}
+
+/* ========== 问题区 ========== */
+.faq-question {
+  display: flex;
+  align-items: center;
+  padding: 28rpx var(--spacing-lg) 28rpx 28rpx;
+  min-height: 88rpx;
+}
+
+.faq-q-content {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 12rpx;
+}
+
+.faq-q-mark {
+  flex-shrink: 0;
+  width: 40rpx;
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #4A6CF7, #7C5CFC);
+  border-radius: 10rpx;
+  margin-top: 2rpx;
+}
+
+.faq-q-text {
+  flex: 1;
+  font-size: 28rpx;
+  color: var(--text-primary);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+/* 展开箭头 */
+.faq-arrow {
+  flex-shrink: 0;
+  width: 44rpx;
+  height: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12rpx;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-arrow--open {
+  transform: rotate(90deg);
+}
+
+.faq-arrow-icon {
+  font-size: 36rpx;
+  color: var(--text-placeholder);
+  font-weight: 300;
+}
+
+/* ========== 答案区 ========== */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s;
+}
+
+.faq-answer--show {
+  max-height: 800rpx;
+}
+
+.faq-a-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12rpx;
+  padding: 0 28rpx 28rpx 28rpx;
+  border-top: 1rpx solid rgba(74, 108, 247, 0.12);
+  margin: 0 var(--spacing-lg);
+  padding-top: 20rpx;
+}
+
+.faq-a-mark {
+  flex-shrink: 0;
+  width: 40rpx;
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #0BBF69, #00D68F);
+  border-radius: 10rpx;
+  margin-top: 2rpx;
+}
+
+.faq-a-text {
+  flex: 1;
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}

@@ -1,0 +1,79 @@
+<!-- 手机号+短验登录 -->
+<view class="login-page">
+
+  <!-- 标题区 -->
+  <view class="login-header">
+    <view class="login-title">使用手机号登陆/注册</view>
+    <view class="login-subtitle">为了注册成功，请使用本人手机号</view>
+  </view>
+
+  <!-- 表单区 -->
+  <view class="login-form">
+
+    <!-- 手机号 -->
+    <view class="input-row {{phoneError ? 'input-row--error' : ''}}">
+      <text class="input-prefix">+86</text>
+      <input
+        class="input-field"
+        type="number"
+        maxlength="11"
+        placeholder="请输入手机号"
+        value="{{phone}}"
+        bindinput="onPhoneInput"
+        bindblur="onPhoneBlur"
+        placeholder-class="input-placeholder"
+      />
+    </view>
+    <text wx:if="{{phoneError}}" class="error-msg">{{phoneError}}</text>
+    <text wx:else class="hint-msg">演示账号：18518472618，验证码：123456</text>
+
+    <!-- 验证码 -->
+    <view class="input-row {{codeError ? 'input-row--error' : ''}}">
+      <input
+        class="input-field"
+        type="number"
+        maxlength="6"
+        placeholder="请输入验证码"
+        value="{{code}}"
+        bindinput="onCodeInput"
+        bindblur="onCodeBlur"
+        placeholder-class="input-placeholder"
+      />
+      <view
+        class="sms-btn {{smsSending || smsCountdown > 0 ? 'sms-btn--disabled' : ''}}"
+        bindtap="onSendSMS"
+      >
+        <text wx:if="{{smsCountdown > 0}}">{{smsCountdown}}s</text>
+        <text wx:elif="{{smsSending}}">发送中</text>
+        <text wx:else>获取验证码</text>
+      </view>
+    </view>
+    <text wx:if="{{codeError}}" class="error-msg">{{codeError}}</text>
+
+  </view>
+
+  <!-- 登录按钮 -->
+  <view class="login-btn-wrap">
+    <button
+      class="login-btn {{(!phoneValid || !codeValid || !agreed) ? 'login-btn--disabled' : ''}}"
+      disabled="{{logging || !phoneValid || !codeValid || !agreed}}"
+      bindtap="onLogin"
+    >
+      <text wx:if="{{logging}}">登录中...</text>
+      <text wx:else>登录</text>
+    </button>
+  </view>
+
+  <!-- 协议 -->
+  <view class="agreement-row">
+    <view class="checkbox-wrap" bindtap="toggleAgreement">
+      <view class="checkbox {{agreed ? 'checkbox--checked' : ''}}">
+        <text wx:if="{{agreed}}" class="checkbox-check">✓</text>
+      </view>
+    </view>
+    <text class="agreement-text">我已阅读并同意</text>
+    <text class="agreement-link" bindtap="viewAgreement">《注册协议》</text>
+    <text class="agreement-link" bindtap="viewPrivacy">《隐私协议》</text>
+  </view>
+
+</view>

@@ -1,0 +1,171 @@
+/* ============================================
+   任务大厅 · 暖黄活力风格
+   黄色渐变头部 + 白色卡片 + 圆角层次
+   ============================================ */
+
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-page);
+}
+
+/* ========== 顶部黄色背景区 ========== */
+.home-header {
+  background: linear-gradient(180deg, #FFD93D 0%, #FFEB3B 60%, #F5F5F5 100%);
+  padding: 24rpx 32rpx 40rpx;
+  position: relative;
+}
+
+/* ========== 品牌横幅 ========== */
+.brand-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+
+.banner-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.banner-title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #333333;
+  letter-spacing: 2rpx;
+}
+
+.banner-subtitle {
+  font-size: 24rpx;
+  color: #666666;
+  font-weight: 400;
+}
+
+/* 标语气泡 */
+.banner-bubble {
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  padding: 16rpx 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+}
+
+.bubble-text {
+  font-size: 22rpx;
+  color: #333333;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.bubble-tail {
+  position: absolute;
+  bottom: -12rpx;
+  left: 24rpx;
+  width: 0;
+  height: 0;
+  border-left: 12rpx solid transparent;
+  border-right: 12rpx solid transparent;
+  border-top: 16rpx solid #FFFFFF;
+}
+
+/* ========== 搜索栏 ========== */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 80rpx;
+  padding: 0 24rpx;
+  background: #FFFFFF;
+  border-radius: 40rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.search-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+  opacity: 0.5;
+}
+
+.search-input {
+  flex: 1;
+  height: 100%;
+  font-size: 28rpx;
+  color: var(--text-primary);
+  background: transparent;
+}
+
+.search-placeholder {
+  color: var(--text-placeholder);
+}
+
+.search-btn {
+  padding: 0 32rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--orange-dark);
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+.search-btn:active {
+  opacity: 0.8;
+}
+
+/* ========== 骨架屏 / 空状态 / 错误 ========== */
+.skeleton-wrap {
+  padding: var(--spacing-md) 32rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.error-wrap,
+.empty-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* ========== 滚动列表 ========== */
+.scroll-content {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.list-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32rpx 0 48rpx;
+}
+
+.loading-more {
+  font-size: 24rpx;
+  color: var(--text-placeholder);
+}
+
+.no-more {
+  font-size: 24rpx;
+  color: var(--text-placeholder);
+}
+
+.scroll-padding {
+  height: 48rpx;
+}

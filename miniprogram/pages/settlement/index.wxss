@@ -1,0 +1,336 @@
+/* ========== 页面容器 ========== */
+.page-container {
+  min-height: 100vh;
+  background: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========== 年月筛选区 ========== */
+.filter-bar {
+  display: flex;
+  gap: 24rpx;
+  padding: var(--spacing-lg);
+  background: var(--bg-card);
+  box-shadow: 0 2px 8px rgba(61, 61, 61, 0.04);
+}
+
+.filter-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.filter-label {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.filter-value {
+  flex: 1;
+  padding: 14rpx var(--spacing-lg);
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-light);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+/* ========== 加载 & 空状态 ========== */
+.loading-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80rpx;
+}
+
+.empty-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+}
+
+/* ========== 总收入汇总 ========== */
+.summary-bar {
+  margin: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background: linear-gradient(135deg, #4A6CF7 0%, #3B5DE7 100%);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 16px rgba(74, 108, 247, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.summary-title {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.summary-amount {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 1rpx;
+}
+
+/* ========== 结算列表 ========== */
+.settle-scroll {
+  flex: 1;
+  padding: 0 var(--spacing-lg);
+}
+
+.settle-card {
+  display: flex;
+  margin-bottom: var(--spacing-md);
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(61, 61, 61, 0.05);
+  transition: transform 0.15s;
+}
+
+.settle-card:active {
+  transform: scale(0.98);
+}
+
+/* 左侧状态色条 */
+.settle-bar {
+  width: 8rpx;
+  flex-shrink: 0;
+  background: var(--bg-divider);
+}
+.settle-bar--done {
+  background: linear-gradient(180deg, #0BBF69, #00D68F);
+}
+
+.settle-body {
+  flex: 1;
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+/* 第一行：任务名称 + 金额 */
+.settle-row1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+}
+
+.settle-task-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.settle-amount {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-left: var(--spacing-md);
+}
+
+/* 第二行：订单号 + 交易时间 */
+.settle-row2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+}
+
+.settle-order {
+  font-size: 24rpx;
+  color: var(--text-placeholder);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.settle-time {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  margin-left: var(--spacing-md);
+}
+
+/* 第三行：状态 + 查看详情 */
+.settle-row3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.settle-status {
+  font-size: 24rpx;
+  color: var(--text-placeholder);
+  padding: 4rpx 16rpx;
+  border-radius: var(--radius-round);
+  background: var(--bg-page);
+}
+
+.settle-status--done {
+  color: var(--success);
+  background: rgba(11, 191, 105, 0.08);
+}
+
+.settle-detail-link {
+  font-size: 24rpx;
+  color: var(--accent);
+}
+
+/* ========== 详情弹窗 ========== */
+.detail-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.detail-panel {
+  width: 100%;
+  max-height: 85vh;
+  background: var(--bg-page);
+  border-radius: 32rpx 32rpx 0 0;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-lg);
+  border-bottom: 1rpx solid var(--bg-divider);
+  flex-shrink: 0;
+}
+
+.detail-header-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.detail-close {
+  width: 52rpx;
+  height: 52rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  color: var(--text-placeholder);
+  background: var(--bg-page);
+  border-radius: 50%;
+}
+
+.detail-scroll {
+  flex: 1;
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.detail-section {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: 0 2px 8px rgba(61, 61, 61, 0.04);
+}
+
+.detail-row {
+  display: flex;
+  align-items: flex-start;
+  padding: var(--spacing-sm) 0;
+}
+
+.detail-row + .detail-row {
+  border-top: 1rpx solid var(--bg-divider);
+}
+
+.detail-label {
+  width: 180rpx;
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.detail-val {
+  flex: 1;
+  font-size: 26rpx;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.detail-val--mono {
+  font-family: 'Courier New', monospace;
+  font-size: 24rpx;
+  word-break: break-all;
+}
+
+/* 金额&状态突出展示 */
+.detail-highlight {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 8px rgba(61, 61, 61, 0.04);
+}
+
+.detail-hl-item {
+  text-align: center;
+  flex: 1;
+}
+
+.detail-hl-label {
+  display: block;
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  margin-bottom: 8rpx;
+}
+
+.detail-hl-amount {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.detail-hl-status {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.detail-hl-divider {
+  width: 2rpx;
+  height: 60rpx;
+  background: var(--bg-divider);
+}

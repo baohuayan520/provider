@@ -1,0 +1,52 @@
+.page-container {
+  min-height: 100vh;
+  background: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+}
+
+.steps-wrap {
+  margin: 0;
+  border-radius: 0;
+  padding: 24rpx var(--spacing-lg);
+}
+
+.steps-title {
+  text-align: center;
+  margin-bottom: 16rpx;
+}
+
+.loading-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80rpx;
+}
+
+.agreement-content {
+  max-height: 480rpx;
+  padding: var(--spacing-sm) 0;
+}
+
+.read-confirm {
+  display: flex;
+  flex-direction: column;
+}
+
+.check-circle {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 2rpx solid var(--bg-divider);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22rpx;
+  color: var(--text-white);
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.check-circle.checked {
+  background: var(--success);
+  border-color: var(--success);
+}

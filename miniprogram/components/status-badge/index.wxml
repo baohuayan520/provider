@@ -1,0 +1,2 @@
+<!-- components/status-badge/index.wxml -->
+<text class="badge {{statusMap[status].cls}}">{{statusMap[status].text}}</text>

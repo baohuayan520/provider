@@ -1,0 +1,30 @@
+{
+  "envId": "cloud1-d0g8x50g49ba70206",
+  "functionRoot": "./cloudfunctions",
+  "functions": [
+    {
+      "name": "initFunctions",
+      "timeout": 30,
+      "runtime": "Nodejs18.15",
+      "handler": "index.main"
+    },
+    {
+      "name": "quickstartFunctions",
+      "timeout": 15,
+      "runtime": "Nodejs18.15",
+      "handler": "index.main"
+    },
+    {
+      "name": "taskFunctions",
+      "timeout": 15,
+      "runtime": "Nodejs18.15",
+      "handler": "index.main"
+    },
+    {
+      "name": "userFunctions",
+      "timeout": 15,
+      "runtime": "Nodejs18.15",
+      "handler": "index.main"
+    }
+  ]
+}

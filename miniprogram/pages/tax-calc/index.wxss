@@ -1,0 +1,85 @@
+.page-container {
+  min-height: 100vh;
+  background: var(--bg-page);
+}
+
+.input-card {
+  display: flex;
+  align-items: center;
+  padding: 40rpx var(--spacing-lg);
+  margin: var(--spacing-md) var(--spacing-lg);
+}
+
+.input-prefix {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: var(--accent);
+  margin-right: var(--spacing-md);
+}
+
+.amount-input {
+  flex: 1;
+  font-size: 48rpx;
+  font-weight: 700;
+  color: var(--text-primary);
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.result-card {
+  margin: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-lg);
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+}
+
+.result-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.result-val {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.final-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rule-content {
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1rpx solid var(--bg-divider);
+}
+
+.rule-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12rpx 0;
+}
+.rule-range {
+  font-size: 26rpx;
+  color: var(--text-primary);
+}
+.rule-desc {
+  font-size: 26rpx;
+  color: var(--accent);
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-sm) 0;
+}
+.history-item + .history-item {
+  border-top: 1rpx solid var(--bg-divider);
+}

@@ -1,0 +1,24 @@
+.page-container {
+  min-height: 100vh;
+  background: var(--bg-page);
+}
+
+.loading-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx;
+}
+
+.article-content {
+  font-size: 28rpx;
+  color: var(--text-primary);
+  line-height: 1.8;
+}
+
+.related-item {
+  padding: var(--spacing-sm) 0;
+}
+.related-item + .related-item {
+  border-top: 1rpx solid var(--bg-divider);
+}

@@ -1,0 +1,52 @@
+<!-- 任务领取管理 -->
+<view class="page-container">
+  <!-- 加载中 -->
+  <view wx:if="{{loading}}" class="loading-wrap">
+    <view class="loading-text">加载中...</view>
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:elif="{{claims.length === 0 && !loading}}" class="empty-wrap">
+    <empty-state
+      icon="📝"
+      title="还没有领取过任务"
+      description="去挑选适合的任务吧"
+      btnText="去看看"
+      bind:action="goHome"
+    />
+  </view>
+
+  <!-- 领取记录列表 -->
+  <scroll-view wx:else scroll-y class="scroll-content">
+    <view wx:for="{{claims}}" wx:key="_id" class="claim-card card" data-id="{{item._id}}" bindtap="goDetail">
+      <!-- 任务信息 -->
+      <view class="card-header flex-between">
+        <text class="task-name text-ellipsis text-h3">{{item.taskTitle}}</text>
+        <status-badge status="{{item.status}}" />
+      </view>
+
+      <view class="divider-thin"></view>
+
+      <!-- 预估报酬 & 时间 -->
+      <view class="card-footer flex-between">
+        <view class="info-row">
+          <text class="text-caption">预估报酬</text>
+          <text class="text-accent font-semibold" style="margin-left:8rpx;">{{item.rewardDetail}}</text>
+        </view>
+        <text class="text-caption">{{item.claimTimeText}}</text>
+      </view>
+
+      <!-- 操作按钮（阻止冒泡，避免触发卡片点击） -->
+      <view wx:if="{{item.status === 4}}" class="action-row" catchtap="noop">
+        <view class="reject-reason text-caption">原因：{{item.auditRemark || '审核不通过'}}</view>
+        <button class="btn-primary btn-sm" data-id="{{item._id}}" catchtap="reSubmit">重新提交</button>
+      </view>
+      <view wx:elif="{{item.status === 1}}" class="action-row" catchtap="noop">
+        <text class="text-success text-caption">进行中，可上传交付物</text>
+        <button class="btn-primary btn-sm" data-id="{{item._id}}" catchtap="uploadDelivery">上传交付物</button>
+      </view>
+    </view>
+
+    <view class="safe-bottom" style="height:40rpx;"></view>
+  </scroll-view>
+</view>

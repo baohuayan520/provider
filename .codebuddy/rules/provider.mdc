@@ -1,0 +1,17 @@
+---
+description: 
+alwaysApply: true
+enabled: true
+updatedAt: 2026-06-11T09:06:52.221Z
+provider: 
+---
+
+项目是任务领取小程序，核心功能是查看任务并领取任务，领取任务进行四要素收集、活体认证、签署协议。
+项目架构
+personal 小程序端，使用小程序的原生语言	
+全局规则	使用 cloudbase 作为后端服务
+每次更新完需求同步更新prd.md
+整体设计风格：
+半透明磨砂卡片（backdrop-filter: blur）+ 投影层次
+商品图/icon 带轻微透视或悬浮阴影，滚动触发视差
+渐变多用冰蓝/紫霞色，呼应系统"液态玻璃"感

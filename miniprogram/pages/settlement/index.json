@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "结算记录",
+  "backgroundColor": "#ECF0F5",
+  "usingComponents": {
+    "empty-state": "/components/empty-state/index"
+  }
+}

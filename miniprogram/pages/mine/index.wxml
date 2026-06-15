@@ -1,0 +1,55 @@
+<!-- 个人中心 · 暖黄活力风格 -->
+<view class="page-container">
+  <!-- 顶部黄色背景区 -->
+  <view class="mine-header">
+    <!-- 用户信息 -->
+    <view class="user-header">
+      <image class="avatar" src="{{userInfo.avatarUrl || '/images/icons/avatar.png'}}" mode="aspectFill" />
+      <view class="user-info-text">
+        <text class="user-name">{{userInfo.maskedName || '新用户'}}</text>
+        <text class="user-phone">{{userInfo.maskedPhone || ''}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 收入统计卡 -->
+  <view class="income-card">
+    <view class="income-label">总收入（元）</view>
+    <view class="income-value">{{totalIncome}}</view>
+    <view class="income-sub-row">
+      <view class="income-sub-item">
+        <text class="sub-label">结算笔数</text>
+        <text class="sub-value">{{stats.settledCount}}</text>
+      </view>
+      <view class="income-sub-item">
+        <text class="sub-label">进行中的任务</text>
+        <text class="sub-value">{{stats.progressCount}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能菜单 — 4列白色卡片网格 -->
+  <view class="menu-card">
+    <view class="menu-grid">
+      <view
+        wx:for="{{menuList}}"
+        wx:key="id"
+        class="menu-item"
+        data-url="{{item.url}}"
+        bindtap="goPage"
+      >
+        <view class="menu-icon-wrap" style="background: {{item.bg}};">
+          <text class="menu-icon">{{item.icon}}</text>
+        </view>
+        <text class="menu-title">{{item.title}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 安全退出 -->
+  <view class="logout-area">
+    <button class="logout-btn" bindtap="onLogout">安全退出</button>
+  </view>
+
+  <view class="safe-bottom" style="height:60rpx;"></view>
+</view>

@@ -1,0 +1,92 @@
+<!-- 单独活体认证 -->
+<view class="page-container">
+  <view wx:if="{{livenessStatus === 'checking'}}" class="loading-wrap">
+    <text class="text-caption">检测中...</text>
+  </view>
+
+  <scroll-view wx:else scroll-y class="scroll-content">
+    <!-- 加载/认证中 -->
+    <view wx:if="{{livenessStatus === 'checking' || livenessStatus === 'authenticating'}}" class="status-card card">
+      <view class="status-icon-wrap primary">
+        <text class="status-icon">{{livenessStatus === 'checking' ? '⏳' : '🔄'}}</text>
+      </view>
+      <text class="text-h2" style="margin-top:24rpx;">
+        {{livenessStatus === 'checking' ? '检测中...' : '认证中...'}}
+      </text>
+      <text class="text-body text-secondary" style="margin-top:12rpx;">
+        {{livenessStatus === 'checking' ? '正在查询活体认证状态' : '正在进行人脸核身，请稍候'}}
+      </text>
+    </view>
+
+    <!-- 验证成功 · 含倒计时 -->
+    <view wx:elif="{{livenessStatus === 'success'}}" class="status-card card">
+      <view class="status-icon-wrap success">
+        <text class="status-icon">✅</text>
+      </view>
+      <text class="text-h2" style="margin-top:24rpx;">认证成功</text>
+      <!-- 认证倒计时 -->
+      <view class="countdown-card">
+        <text class="countdown-num">{{remainDays}}</text>
+        <text class="countdown-unit">天</text>
+      </view>
+      <text class="text-body text-secondary" style="margin-top:8rpx;">认证有效期至 {{expireDate}}</text>
+      <text class="text-caption text-placeholder" style="margin-top:4rpx;">有效期内可正常领取任务</text>
+    </view>
+
+    <!-- 验证失败 -->
+    <view wx:elif="{{livenessStatus === 'failed'}}" class="status-card card">
+      <view class="status-icon-wrap error">
+        <text class="status-icon">❌</text>
+      </view>
+      <text class="text-h2" style="margin-top:24rpx;">验证失败</text>
+      <text class="text-body text-error" style="margin-top:12rpx;">活体认证未通过，请重新尝试</text>
+      <button class="btn-primary btn-block" style="margin-top:40rpx;" bindtap="startLiveness">重新认证</button>
+    </view>
+
+    <!-- 即将过期（<30天） -->
+    <view wx:elif="{{livenessStatus === 'expiring'}}" class="status-card card">
+      <view class="status-icon-wrap warning">
+        <text class="status-icon">⚠️</text>
+      </view>
+      <text class="text-h2" style="margin-top:24rpx;">即将到期</text>
+      <!-- 倒计时 -->
+      <view class="countdown-card warning-card">
+        <text class="countdown-num">{{remainDays}}</text>
+        <text class="countdown-unit">天</text>
+      </view>
+      <text class="text-body text-warning" style="margin-top:8rpx;">{{expireText}}</text>
+      <button class="btn-primary btn-block" style="margin-top:40rpx;" bindtap="startLiveness">立即重新认证</button>
+    </view>
+
+    <!-- 已过期 -->
+    <view wx:elif="{{livenessStatus === 'expired'}}" class="status-card card">
+      <view class="status-icon-wrap error">
+        <text class="status-icon">❌</text>
+      </view>
+      <text class="text-h2" style="margin-top:24rpx;">已过期</text>
+      <text class="text-body text-error" style="margin-top:12rpx;">{{expireText}}</text>
+      <button class="btn-primary btn-block" style="margin-top:40rpx;" bindtap="startLiveness">立即认证</button>
+    </view>
+
+    <!-- 未认证 -->
+    <view wx:elif="{{livenessStatus === 'needAuth'}}" class="status-card card">
+      <view class="status-icon-wrap">
+        <text class="status-icon">🧑</text>
+      </view>
+      <text class="text-h2" style="margin-top:24rpx;">人脸核身认证</text>
+      <text class="text-body text-secondary" style="margin-top:12rpx;">请完成活体认证以保障账户安全</text>
+      <text class="text-body text-success" style="margin-top:8rpx;">认证有效期：180天</text>
+
+      <view class="notice-box">
+        <text class="text-h3">认证须知</text>
+        <text class="notice-item">• 保持光线充足、清晰</text>
+        <text class="notice-item">• 摘掉帽子、眼镜、口罩</text>
+        <text class="notice-item">• 正视镜头，保持自然表情</text>
+      </view>
+
+      <button class="btn-primary btn-block" style="margin-top:40rpx;" bindtap="startLiveness" loading="{{verifying}}">
+        📷 开始人脸认证
+      </button>
+    </view>
+  </scroll-view>
+</view>

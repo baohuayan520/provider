@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "任务大厅",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#F5F5F5",
+  "usingComponents": {
+    "task-card": "/components/task-card/index",
+    "empty-state": "/components/empty-state/index",
+    "skeleton-card": "/components/skeleton-card/index"
+  }
+}

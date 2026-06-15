@@ -1,0 +1,9 @@
+<!-- components/skeleton-card/index.wxml -->
+<view class="skeleton-card">
+  <view class="sk-line sk-title"></view>
+  <view class="sk-line sk-subtitle"></view>
+  <view class="sk-line sk-body"></view>
+  <view class="sk-line sk-body" style="width:70%;"></view>
+  <view class="sk-line sk-foot"></view>
+  <view class="sk-line sk-foot" style="width:50%;"></view>
+</view>

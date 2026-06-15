@@ -1,0 +1,115 @@
+<!-- 个人信息 -->
+<view class="page-container">
+  <view wx:if="{{loading}}" class="loading-wrap">
+    <text class="text-caption">加载中...</text>
+  </view>
+
+  <block wx:elif="{{userInfo}}">
+    <scroll-view scroll-y class="scroll-content">
+      <!-- 基本信息 -->
+      <view class="card">
+        <view class="flex-between" style="margin-bottom:var(--spacing-md);">
+          <text class="text-h2">基本信息</text>
+          <view wx:if="{{!isEditing && !userInfo.identityVerified}}">
+            <button class="btn-text" bindtap="startEdit">✏️ 编辑</button>
+          </view>
+        </view>
+
+        <block wx:if="{{!isEditing}}">
+          <view class="info-row">
+            <text class="info-label">真实姓名</text>
+            <text class="info-value">{{userInfo.maskedName}}</text>
+          </view>
+          <view class="info-row">
+            <text class="info-label">身份证号</text>
+            <text class="info-value">{{userInfo.maskedIdCard}}</text>
+          </view>
+          <view class="info-row">
+            <text class="info-label">手机号码</text>
+            <text class="info-value">{{userInfo.maskedPhone}}</text>
+          </view>
+          <view class="info-row">
+            <text class="info-label">银行卡号</text>
+            <text class="info-value">{{userInfo.maskedBankCard}}</text>
+          </view>
+          <view wx:if="{{userInfo.bankName}}" class="info-row">
+            <text class="info-label">开户银行</text>
+            <text class="info-value">{{userInfo.bankName}}</text>
+          </view>
+          <!-- 工作技能 -->
+          <view wx:if="{{userInfo.skills && userInfo.skills.length > 0}}" class="info-row info-row--skills">
+            <text class="info-label">工作技能</text>
+            <view class="skill-tags-display">
+              <text wx:for="{{userInfo.skills}}" wx:key="*this" class="skill-tag-item">{{item}}</text>
+            </view>
+          </view>
+        </block>
+
+        <block wx:else>
+          <view class="input-group">
+            <text class="input-label">真实姓名</text>
+            <input class="input-field" value="{{editForm.name}}" data-field="name" bindinput="onInput" />
+          </view>
+          <view class="input-group">
+            <text class="input-label">手机号码</text>
+            <input class="input-field" value="{{editForm.phone}}" data-field="phone" bindinput="onInput" type="number" maxlength="11" />
+          </view>
+          <view class="input-group">
+            <text class="input-label">银行卡号</text>
+            <input class="input-field" value="{{editForm.bankCard}}" data-field="bankCard" bindinput="onInput" type="number" maxlength="19" />
+          </view>
+          <view class="input-group">
+            <text class="input-label">开户银行</text>
+            <input class="input-field" value="{{editForm.bankName}}" data-field="bankName" bindinput="onInput" placeholder="如：中国工商银行" />
+          </view>
+          <!-- 编辑工作技能 -->
+          <view class="input-group">
+            <text class="input-label">工作技能（可多选）</text>
+            <view class="skill-picker">
+              <view
+                wx:for="{{skillOptions}}"
+                wx:key="*this"
+                class="skill-tag-pick {{editForm.skills.indexOf(item) > -1 ? 'skill-tag-pick--active' : ''}}"
+                data-skill="{{item}}"
+                bindtap="toggleSkill"
+              >{{item}}</view>
+            </view>
+          </view>
+          <view class="flex-row" style="gap:var(--spacing-md);margin-top:var(--spacing-md);">
+            <button class="btn-outline btn-sm flex-1" bindtap="cancelEdit">取消</button>
+            <button class="btn-primary btn-sm flex-1" bindtap="saveEdit">保存</button>
+          </view>
+        </block>
+      </view>
+
+      <!-- 身份证照片 -->
+      <view wx:if="{{userInfo.idCardFrontUrl || userInfo.idCardBackUrl}}" class="card">
+        <text class="text-h2" style="margin-bottom:var(--spacing-md);">身份证照片</text>
+        <view class="idcard-row">
+          <image
+            wx:if="{{userInfo.idCardFrontUrl}}"
+            class="idcard-thumb"
+            src="{{userInfo.idCardFrontUrl}}"
+            mode="aspectFill"
+            data-url="{{userInfo.idCardFrontUrl}}"
+            bindtap="previewImage"
+          />
+          <image
+            wx:if="{{userInfo.idCardBackUrl}}"
+            class="idcard-thumb"
+            src="{{userInfo.idCardBackUrl}}"
+            mode="aspectFill"
+            data-url="{{userInfo.idCardBackUrl}}"
+            bindtap="previewImage"
+          />
+        </view>
+      </view>
+
+      <view style="height:60rpx;"></view>
+    </scroll-view>
+  </block>
+
+  <view wx:elif="{{!loading}}" class="empty-wrap">
+    <text class="text-caption">暂无个人信息</text>
+  </view>
+</view>

@@ -1,0 +1,117 @@
+.page-container {
+  min-height: 100vh;
+  background: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+}
+
+.steps-wrap {
+  margin: 0;
+  border-radius: 0;
+  padding: 24rpx var(--spacing-lg);
+}
+
+.steps-title {
+  text-align: center;
+  margin-bottom: 16rpx;
+}
+
+.verified-tip {
+  margin: var(--spacing-lg);
+}
+
+.form-card {
+  margin: var(--spacing-md) var(--spacing-lg);
+}
+
+/* 身份证上传 */
+.idcard-upload-row {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.idcard-upload-item {
+  flex: 1;
+  position: relative;
+  height: 260rpx;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-page);
+  border: 2rpx dashed var(--bg-divider);
+}
+
+.idcard-preview {
+  width: 100%;
+  height: 100%;
+}
+
+.idcard-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+}
+
+.idcard-placeholder-icon {
+  font-size: 60rpx;
+}
+
+.idcard-placeholder-text {
+  font-size: 24rpx;
+  color: var(--text-placeholder);
+}
+
+.idcard-delete {
+  position: absolute;
+  top: 8rpx;
+  right: 8rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22rpx;
+}
+
+.uploading-tip {
+  position: absolute;
+  bottom: 8rpx;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 22rpx;
+  color: var(--accent);
+  background: rgba(255,255,255,0.8);
+  padding: 4rpx;
+}
+
+/* 工作技能 */
+.skills-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-top: var(--spacing-md);
+}
+
+.skill-tag {
+  padding: 12rpx 28rpx;
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  background: var(--bg-page);
+  border-radius: 40rpx;
+  border: 2rpx solid var(--bg-divider);
+  transition: all 0.2s;
+}
+
+.skill-tag--active {
+  color: #FFFFFF;
+  background: var(--accent);
+  border-color: var(--accent);
+}

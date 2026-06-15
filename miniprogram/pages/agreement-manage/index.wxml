@@ -1,0 +1,46 @@
+<!-- 协议管理 -->
+<view class="page-container">
+  <view wx:if="{{loading}}" class="loading-wrap">
+    <text class="text-caption">加载中...</text>
+  </view>
+
+  <block wx:elif="{{signatures.length === 0}}">
+    <empty-state icon="📄" title="暂无签署协议" description="领取任务时会签署协议" />
+  </block>
+
+  <scroll-view wx:else scroll-y class="scroll-content">
+    <view wx:for="{{signatures}}" wx:key="_id" class="sign-item card" data-id="{{item._id}}" bindtap="goDetail">
+      <view class="flex-row" style="gap:16rpx;">
+        <text class="sign-icon">📄</text>
+        <view class="flex-1">
+          <text class="sign-title text-h3">{{item.agreementTitle}}</text>
+          <text class="text-caption text-secondary" style="display:block;margin-top:4rpx;">
+            {{item.agreementVersion}} · 签署于 {{item.signTimeText}}
+          </text>
+        </view>
+      </view>
+      <view class="sign-status flex-row" style="justify-content:flex-end;gap:16rpx;">
+        <text class="text-accent text-caption">查看协议内容 ›</text>
+      </view>
+    </view>
+
+    <view style="height:40rpx;"></view>
+  </scroll-view>
+
+  <!-- 协议详情弹窗 -->
+  <view wx:if="{{showDetail}}" class="detail-overlay" catchtap="closeDetail">
+    <view class="detail-panel" catchtap="">
+      <view class="detail-header">
+        <text class="text-h2">{{detailAgreement.title}} · {{detailAgreement.version}}</text>
+        <text class="detail-close" bindtap="closeDetail">✕</text>
+      </view>
+      <view wx:if="{{detailSignature}}" class="detail-meta">
+        <text class="text-caption">签署时间：{{detailSignature.signTimeText}}</text>
+      </view>
+      <view class="divider-thin" style="margin:16rpx 0;"></view>
+      <scroll-view scroll-y class="detail-content">
+        <rich-text nodes="{{detailAgreement.content}}" />
+      </scroll-view>
+    </view>
+  </view>
+</view>

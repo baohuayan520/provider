@@ -1,0 +1,185 @@
+/* 登录页 — 莫兰迪暖中性风格 */
+.login-page {
+  min-height: 100vh;
+  background: var(--bg-page, #F6F3EF);
+  padding: 60rpx 60rpx 0;
+  box-sizing: border-box;
+}
+
+/* 标题区 */
+.login-header {
+  margin-bottom: 80rpx;
+}
+
+.login-title {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: var(--text-primary, #3D3D3D);
+  line-height: 1.4;
+  margin-bottom: 16rpx;
+}
+
+.login-subtitle {
+  font-size: 28rpx;
+  color: var(--text-secondary, #7A7A7A);
+  line-height: 1.4;
+}
+
+/* 表单 */
+.login-form {
+  margin-bottom: 60rpx;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  background: #FFFFFF;
+  border-radius: 50rpx;
+  padding: 0 32rpx;
+  margin-bottom: 32rpx;
+  transition: all 0.2s;
+  border: 2rpx solid var(--bg-divider, #EBE7E2);
+}
+
+.input-row--error {
+  background: var(--error-bg, #F5ECEA);
+  border-color: var(--error, #C47A6A);
+}
+
+.input-prefix {
+  font-size: 30rpx;
+  color: var(--text-primary, #3D3D3D);
+  font-weight: 500;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.input-field {
+  flex: 1;
+  height: 100rpx;
+  font-size: 30rpx;
+  color: var(--text-primary, #3D3D3D);
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.input-placeholder {
+  color: var(--text-placeholder, #AAAAAA);
+  font-size: 30rpx;
+}
+
+/* 验证码按钮 */
+.sms-btn {
+  flex-shrink: 0;
+  font-size: 26rpx;
+  color: var(--accent, #C4956A);
+  font-weight: 500;
+  padding-left: 20rpx;
+  white-space: nowrap;
+}
+
+.sms-btn--disabled {
+  color: var(--text-placeholder, #AAAAAA);
+}
+
+/* 错误提示 */
+.error-msg {
+  display: block;
+  font-size: 24rpx;
+  color: var(--error, #C47A6A);
+  margin-top: -20rpx;
+  margin-bottom: 20rpx;
+  padding-left: 32rpx;
+}
+
+/* 提示信息 */
+.hint-msg {
+  display: block;
+  font-size: 22rpx;
+  color: var(--text-secondary, #7A7A7A);
+  margin-top: -20rpx;
+  margin-bottom: 20rpx;
+  padding-left: 32rpx;
+}
+
+/* 登录按钮 */
+.login-btn-wrap {
+  margin-bottom: 40rpx;
+}
+
+.login-btn {
+  width: 100%;
+  height: 96rpx;
+  line-height: 96rpx;
+  background: var(--accent, #C4956A);
+  color: #FFFFFF;
+  font-size: 32rpx;
+  font-weight: 600;
+  border-radius: 48rpx;
+  border: none;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(196, 149, 106, 0.25);
+}
+
+.login-btn:active {
+  opacity: 0.9;
+  transform: scale(0.98);
+}
+
+.login-btn--disabled {
+  background: #D0C8BD;
+  color: #FFFFFF;
+  box-shadow: none;
+}
+
+.login-btn::after {
+  border: none;
+}
+
+/* 协议 */
+.agreement-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4rpx;
+}
+
+.checkbox-wrap {
+  padding: 8rpx;
+  margin-right: 4rpx;
+}
+
+.checkbox {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  border: 2rpx solid var(--bg-divider, #EBE7E2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.checkbox--checked {
+  background: var(--accent, #C4956A);
+  border-color: var(--accent, #C4956A);
+}
+
+.checkbox-check {
+  color: #FFFFFF;
+  font-size: 20rpx;
+  font-weight: bold;
+}
+
+.agreement-text {
+  font-size: 24rpx;
+  color: var(--text-secondary, #7A7A7A);
+}
+
+.agreement-link {
+  font-size: 24rpx;
+  color: var(--accent, #C4956A);
+}

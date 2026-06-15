@@ -1,0 +1,98 @@
+<!-- 任务大厅 · 暖黄活力风格 -->
+<view class="page-container">
+  <!-- 顶部黄色背景区 -->
+  <view class="home-header">
+    <!-- 品牌横幅 -->
+    <view class="brand-banner">
+      <view class="banner-left">
+        <text class="banner-title">甄宏晟服务平台</text>
+        <text class="banner-subtitle">专业灵活用工，让工作更自由</text>
+      </view>
+      <view class="banner-bubble">
+        <text class="bubble-text">专业灵活用工\n让工作更自由。</text>
+        <view class="bubble-tail"></view>
+      </view>
+    </view>
+
+    <!-- 搜索栏 -->
+    <view class="search-bar">
+      <view class="search-box">
+        <text class="search-icon">🔍</text>
+        <input
+          class="search-input"
+          type="text"
+          placeholder="搜索任务名称"
+          placeholder-class="search-placeholder"
+          value="{{searchKeyword}}"
+          bindinput="onSearchInput"
+          confirm-type="search"
+        />
+      </view>
+      <view class="search-btn" bindtap="onSearchConfirm">搜索</view>
+    </view>
+  </view>
+
+  <!-- 骨架屏 -->
+  <view wx:if="{{loading && taskList.length === 0}}" class="skeleton-wrap">
+    <skeleton-card wx:for="{{[1,2,3]}}" wx:key="*this" />
+  </view>
+
+  <!-- 加载错误 -->
+  <view wx:elif="{{loadError && taskList.length === 0 && !dbNotReady}}" class="error-wrap">
+    <empty-state
+      icon="⚠️"
+      title="加载失败"
+      description="网络异常，请检查网络后重试"
+      btnText="重新加载"
+      bind:action="onRetry"
+    />
+  </view>
+
+  <!-- 数据库未初始化 -->
+  <view wx:elif="{{dbNotReady}}" class="error-wrap">
+    <empty-state
+      icon="🗄️"
+      title="数据库未初始化"
+      description="请先部署 initFunctions 云函数，然后点击下方按钮初始化"
+      btnText="{{initLoading ? '初始化中...' : '初始化数据库'}}"
+      btnDisabled="{{initLoading}}"
+      bind:action="initDatabase"
+    />
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:elif="{{taskList.length === 0 && !loading}}" class="empty-wrap">
+    <empty-state
+      icon="📋"
+      title="暂无进行中的任务"
+      description="有新任务会在这里展示"
+    />
+  </view>
+
+  <!-- 任务列表 -->
+  <scroll-view
+    wx:else
+    scroll-y
+    class="scroll-content"
+    bindscrolltolower="onReachBottom"
+    enhanced
+    show-scrollbar="{{false}}"
+  >
+    <task-card
+      wx:for="{{taskList}}"
+      wx:key="_id"
+      task="{{item}}"
+      bind:click="goDetail"
+      data-id="{{item._id}}"
+    />
+
+    <!-- 底部加载状态 -->
+    <view class="list-footer">
+      <view wx:if="{{loading}}" class="loading-more">加载中...</view>
+      <view wx:elif="{{!hasMore}}" class="no-more">— 已经到底了 —</view>
+    </view>
+
+    <!-- 底部留白 -->
+    <view class="scroll-padding"></view>
+  </scroll-view>
+</view>

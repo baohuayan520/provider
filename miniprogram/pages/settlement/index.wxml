@@ -1,0 +1,136 @@
+<!-- 结算记录 - 年月筛选 + 详情弹窗 -->
+<view class="page-container">
+  <!-- 年月筛选区 -->
+  <view class="filter-bar">
+    <view class="filter-item">
+      <text class="filter-label">年份</text>
+      <picker mode="selector" range="{{yearList}}" value="{{yearIndex}}" bindchange="onYearChange">
+        <view class="filter-value">{{selectedYear}}年 ▼</view>
+      </picker>
+    </view>
+    <view class="filter-item">
+      <text class="filter-label">月份</text>
+      <picker mode="selector" range="{{monthList}}" value="{{monthIndex}}" bindchange="onMonthChange">
+        <view class="filter-value">{{selectedMonth}}月 ▼</view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 加载中 -->
+  <view wx:if="{{loading}}" class="loading-wrap">
+    <text class="text-caption">加载中...</text>
+  </view>
+
+  <block wx:else>
+    <!-- 总收入汇总 -->
+    <view class="summary-bar">
+      <text class="summary-title">{{selectedYear}}年{{selectedMonth}}月总收入</text>
+      <text class="summary-amount">¥{{totalIncome.toFixed(2)}}</text>
+    </view>
+
+    <!-- 空状态 -->
+    <view wx:if="{{settlements.length === 0}}" class="empty-wrap">
+      <empty-state icon="💰" title="暂无结算记录" description="选择其他月份查看" />
+    </view>
+
+    <!-- 结算列表 -->
+    <scroll-view wx:else scroll-y class="settle-scroll" enhanced show-scrollbar="{{false}}">
+      <view
+        wx:for="{{settlements}}"
+        wx:key="_id"
+        class="settle-card"
+        data-id="{{item._id}}"
+        bindtap="showDetail"
+      >
+        <!-- 左侧状态色条 -->
+        <view class="settle-bar {{item.status === 1 ? 'settle-bar--done' : ''}}"></view>
+
+        <view class="settle-body">
+          <!-- 第一行：任务名称 + 金额 -->
+          <view class="settle-row1">
+            <text class="settle-task-name">{{item.taskTitle}}</text>
+            <text class="settle-amount">¥{{item.rewardText}}</text>
+          </view>
+
+          <!-- 第二行：订单号 + 交易时间 -->
+          <view class="settle-row2">
+            <text class="settle-order">订单号：{{item.orderNo}}</text>
+            <text class="settle-time">{{item.settleTimeText}}</text>
+          </view>
+
+          <!-- 第三行：状态 + 查看详情 -->
+          <view class="settle-row3">
+            <text class="settle-status {{item.status === 1 ? 'settle-status--done' : ''}}">{{item.statusText}}</text>
+            <text class="settle-detail-link">查看详情 ›</text>
+          </view>
+        </view>
+      </view>
+
+      <view style="height:40rpx;"></view>
+    </scroll-view>
+  </block>
+
+  <!-- 详情弹窗 -->
+  <view wx:if="{{showDetail}}" class="detail-overlay" bindtap="closeDetail">
+    <view class="detail-panel" catchtap="noop">
+      <!-- 弹窗标题栏 -->
+      <view class="detail-header">
+        <text class="detail-header-title">结算详情</text>
+        <view class="detail-close" bindtap="closeDetail">✕</view>
+      </view>
+
+      <!-- 详情滚动内容 -->
+      <scroll-view scroll-y class="detail-scroll" enhanced show-scrollbar="{{false}}">
+        <view class="detail-section">
+          <view class="detail-row">
+            <text class="detail-label">创建时间</text>
+            <text class="detail-val">{{detailRecord.createTimeText}}</text>
+          </view>
+          <view class="detail-row">
+            <text class="detail-label">交易单号</text>
+            <text class="detail-val detail-val--mono">{{detailRecord.transactionNo}}</text>
+          </view>
+          <view class="detail-row">
+            <text class="detail-label">结算银行卡</text>
+            <text class="detail-val">{{detailRecord.bankCard}}</text>
+          </view>
+          <view class="detail-row">
+            <text class="detail-label">服务商名称</text>
+            <text class="detail-val">{{detailRecord.serviceProviderName}}</text>
+          </view>
+          <view class="detail-row">
+            <text class="detail-label">企业名称</text>
+            <text class="detail-val">{{detailRecord.enterpriseName}}</text>
+          </view>
+          <view class="detail-row">
+            <text class="detail-label">完成时间</text>
+            <text class="detail-val">{{detailRecord.completionTimeText}}</text>
+          </view>
+          <view class="detail-row">
+            <text class="detail-label">任务名称</text>
+            <text class="detail-val">{{detailRecord.taskTitle}}</text>
+          </view>
+          <view class="detail-row">
+            <text class="detail-label">任务领取单号</text>
+            <text class="detail-val detail-val--mono">{{detailRecord.claimOrderNo}}</text>
+          </view>
+        </view>
+
+        <!-- 金额 & 状态 突出展示 -->
+        <view class="detail-highlight">
+          <view class="detail-hl-item">
+            <text class="detail-hl-label">结算金额</text>
+            <text class="detail-hl-amount">¥{{detailRecord.rewardText}}</text>
+          </view>
+          <view class="detail-hl-divider"></view>
+          <view class="detail-hl-item">
+            <text class="detail-hl-label">结算状态</text>
+            <text class="detail-hl-status {{detailRecord.status === 1 ? 'text-success' : 'text-warning'}}">
+              {{detailRecord.statusText}}
+            </text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

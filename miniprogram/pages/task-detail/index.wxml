@@ -1,0 +1,101 @@
+<!-- 任务详情 -->
+<view class="page-container">
+  <!-- 加载中 -->
+  <view wx:if="{{loading}}" class="loading-wrap">
+    <text class="text-caption">加载中...</text>
+  </view>
+
+  <block wx:elif="{{task}}">
+    <scroll-view scroll-y class="scroll-content">
+      <!-- 封面 -->
+      <image wx:if="{{task.coverImage}}" class="cover-img" src="{{task.coverImage}}" mode="aspectFill" />
+      <view wx:else class="cover-placeholder">
+        <text class="cover-placeholder-text">📌 {{task.title}}</text>
+      </view>
+
+      <!-- 详情区域 -->
+      <view class="detail-section card">
+        <view class="text-h1" style="margin-bottom:16rpx;">{{task.title}}</view>
+        
+        <view class="detail-row">
+          <text class="detail-label">发布企业</text>
+          <text class="detail-value">{{maskedEnterpriseName || task.enterpriseName}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="detail-label">收费标准</text>
+          <text class="detail-value text-accent font-semibold">{{task.payModeText}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="detail-label">任务时间</text>
+          <text class="detail-value">{{task.taskPeriod}}</text>
+        </view>
+      </view>
+
+      <!-- 硬性要求 -->
+      <view wx:if="{{task.requirements && task.requirements.length > 0}}" class="detail-section card">
+        <text class="text-h3">硬性要求</text>
+        <view class="requirements-list">
+          <view wx:for="{{task.requirements}}" wx:key="*this" class="req-item">
+            <text class="req-dot">●</text>
+            <text class="req-text text-body">{{item}}</text>
+          </view>
+        </view>
+        <!-- 硬性描述 -->
+        <view wx:if="{{task.requirementDescription}}" class="req-description">
+          <text class="text-body text-secondary">{{task.requirementDescription}}</text>
+        </view>
+      </view>
+
+      <!-- 技能要求 -->
+      <view wx:if="{{task.skills && task.skills.length > 0}}" class="detail-section card">
+        <text class="text-h3">技能要求</text>
+        <view class="skill-tags">
+          <text wx:for="{{task.skills}}" wx:key="*this" class="skill-tag-detail">{{item}}</text>
+        </view>
+      </view>
+
+      <!-- 任务描述 -->
+      <view class="detail-section card">
+        <text class="text-h3">任务描述</text>
+        <text class="text-body" style="margin-top:16rpx;display:block;">{{task.description}}</text>
+      </view>
+
+      <!-- 交付标准 -->
+      <view class="detail-section card">
+        <text class="text-h3">交付标准</text>
+        <text class="text-body" style="margin-top:16rpx;display:block;">{{task.deliveryStandard || '上传交付物图片'}}</text>
+      </view>
+
+      <view style="height:120rpx;"></view>
+    </scroll-view>
+
+    <!-- 底部操作栏（从管理页进入时隐藏） -->
+    <view wx:if="{{!fromManage}}" class="bottom-action-bar">
+      <!-- 未领取，可领取 -->
+      <button
+        wx:if="{{!claimed && canClaim}}"
+        class="btn-primary btn-block"
+        bindtap="startClaim"
+      >立即领取</button>
+
+      <!-- 已在领取中 -->
+      <button
+        wx:elif="{{claimed && !reSubmit}}"
+        class="btn-outline btn-block"
+        bindtap="goManage"
+      >已在领取中，查看进度</button>
+
+      <!-- 审核拒绝重新提交 -->
+      <button
+        wx:if="{{reSubmit || (claimStatus && claimStatus.status === 4)}}"
+        class="btn-primary btn-block"
+        bindtap="reSubmitClaim"
+      >重新提交申请</button>
+
+      <!-- 不可领取 -->
+      <view wx:if="{{!canClaim && !claimed}}" class="cant-claim-hint">
+        <text class="text-caption" style="color:var(--error);">{{claimNotAllowedMsg}}</text>
+      </view>
+    </view>
+  </block>
+</view>
